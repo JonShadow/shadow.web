@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="shadow.web.dao.UserDao"> <!-- 对应接口路径 -->  
+
+	<select id="checkPhoneExist" resultType="int">
+		select count(*) from shadow_user where phone=#{phone} 
+	</select>
+
+	<select id="getUserByName" resultType="shadowuser">
+		select * from shadow_user where username=#{username} 
+	</select>
+	
+	<insert id="addUser">
+		insert ignore into shadow_user (username,password,phone) values (#{username}, #{password}, #{phone})
+	</insert>
+</mapper>  

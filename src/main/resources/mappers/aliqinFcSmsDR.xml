@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="shadow.web.dao.AliqinFcSmsDrDao"> <!-- 对应接口路径 -->  
+
+<insert id="insertTNObect">
+	insert into tn_aliqinfcsmsdr (bizId,errCode,extend,receiver,reptTime,sendTime,state) values 
+	(#{aliqinFcSmsDR.bizId},#{aliqinFcSmsDR.errCode},#{aliqinFcSmsDR.extend},#{aliqinFcSmsDR.receiver},unix_timestamp(#{aliqinFcSmsDR.reptTime})*1000,unix_timestamp(#{aliqinFcSmsDR.sendTime})*1000,#{aliqinFcSmsDR.state})
+</insert>
+
+</mapper>  

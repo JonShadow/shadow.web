@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="shadow.web.dao.AliqinFcSmsUpDao"> <!-- 对应接口路径 -->  
+
+<insert id="insertTNObect">
+	insert into tn_aliqinfcsmsup (content,destCode,sender,senderTime,smsSeq) values 
+	(#{aliqinFcSmsUp.content},#{aliqinFcSmsUp.destCode},#{aliqinFcSmsUp.sender},unix_timestamp(#{aliqinFcSmsUp.senderTime})*1000,#{aliqinFcSmsUp.smsSeq})
+</insert>
+
+</mapper>  

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="resources/css/main.css" type="text/css"
+	media="screen" />
+<script src="resources/js/lib/jquery/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+focusEle('user');
+  </script>
+
+</head>
+<body>
+	<object width="75" height="75" align="middle" class="clock"
+		style="visibility: visible;">
+		<param name="movie" value="resources/images/clock.swf"
+			data-bindattr-1109="1109">
+		<param name="quality" value="high">
+		<param name="wmode" value="transparent">
+		<param name="swfversion" value="9.0.45.0">
+	</object>
+	<form name="f" method="post" action="./index.php?action=login">
+
+		<div class="login-main">
+			<div class="login-logo">
+				<a href="http://www.emlog.net" target="_blank"><img
+					src="resources/images/login_logo.jpg" alt="emlog" width="294"
+					height="59" /></a>
+			</div>
+			<div class="login-input">
+				<span>用户名</span>
+				<div>
+					<input type="text" name="user" id="user" />
+				</div>
+				<span>密码</span>
+				<div>
+					<input type="password" name="pw" id="pw" />
+				</div>
+			</div>
+			<div class="login-button">
+				<div class="checkbox">
+					<input type="checkbox" name="ispersis" id="ispersis" value="1" /><span><label
+						for="ispersis">记住我</label></span>
+				</div>
+				<div class="button">
+					<input type="submit" value=" 登 录" class="submit">
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+			<div class="login-bottom"></div>
+			<div class="back">
+				<a href="../">&laquo;返回首页</a> | <a
+					href="http://wiki.emlog.net/doku.php?id=chpwd" target="_blank">忘记密码?</a>
+			</div>
+		</div>
+	</form>
+
+	<!--查询等待UI-->
+	<!-- <div class="ajax-loading ajax-loading-under"></div>
+  		<div class="ajax-loading">
+    		<div class="loading-content gray">
+      			<img src="resources/images/pic-loading.gif"/>
+      			<span>正在查询，请稍候...</span>
+  		</div>
+	</div> -->
+	<!--查询等待UI-->
+</body>
+</html>

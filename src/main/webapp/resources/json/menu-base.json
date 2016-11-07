@@ -1,0 +1,7 @@
+[
+    {"name":"基础组件", "children":[
+        {"id":"base-navtab", "name":"Navtab", "target":"navtab", "url":"html/base/waiting.html"},
+        {"id":"base-dialog", "name":"Dialog弹窗", "target":"navtab", "url":"html/base/waiting.html"},
+        {"id":"base-alertmsg", "name":"alertmsg消息窗口", "target":"navtab", "url":"html/base/waiting.html"}
+    ]}
+]
