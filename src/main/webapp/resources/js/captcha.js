@@ -27,15 +27,13 @@ function sendCaptcha() {
                 error: function (XMLHttpRequest, textStatus, errorThrown) {   
                       
                 },  
-                success: function (data){   
-                    data = parseInt(data, 10);  
-                    if(data == 1){  
+                success: function (data){ 
+                    if(data == "true"){  
                         $("#reg-PhoneTip").html("<font color='#339933'>√ 短信验证码已发到您的手机,请查收</font>");  
-                    }else if(data == 0){  
-                        $("#reg-PhoneTip").html("<font color='red'>短信验证码发送失败，请重新发送</font>");  
-                    }else if(data == 2){  
-                        $("#reg-PhoneTip").html("<font color='red'>该手机号码今天发送验证码过多</font>");  
-                        focusPhone();
+                    }else if(data == "error"){  
+                        $("#reg-PhoneTip").html("<font color='red'>短信验证码发送异常，请重新发送</font>");  
+                    }else{  
+                        $("#reg-PhoneTip").html("<font color='red'>"+data+"</font>");  
                     }  
                 }  
             });  
@@ -83,7 +81,6 @@ $(document).ready(function() {
 function checkPhone() {  
     var phone = $("#reg-phone").val();  
     var re= /(^1[3|5|8][0-9]{9}$)/;  
-    console.log(phone);
     if (trim(phone) == "") {
         document.getElementById("reg-PhoneTip").innerHTML = "<font color='red' size='2'>手机号码不能为空</font>";  
         focusPhone();
@@ -101,7 +98,6 @@ function checkPhone() {
                 type : "POST", // 用POST方式传输  
                 dataType : "text", // 数据格式:text  
                 success : function(data) {  
-                	console.log(data);
                     //data = parseInt(data, 10);  
                     if (data == "true") {
                         $("#reg-PhoneTip").html("<font color='#339933' size='2'>√ 该手机号码可以注册，输入正确</font>"); 

@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.annotations.Param;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +44,11 @@ public class ShowWeb {
 	private String login(Model model, ShadowUser shadowUser) {
 		model.addAttribute("sessionUser", new ShadowUser());
 		return "login";
+	}
+	
+	@RequestMapping(value = "/reg")
+	private String Reg(Model model, ShadowUser shadowUser) {
+		return "reg";
 	}
 	
 	@RequestMapping(value = "/logout")
@@ -169,13 +175,27 @@ public class ShowWeb {
 	@RequestMapping(value = "/sendCaptcha", method = RequestMethod.POST)
 	private String messageSend(HttpServletRequest request, String phone, String code) {
 		try {
-			//String result = alidayuMessageService.SendMsg("123", "SMS_12870237", phone, "{\"code\":\"" + code + "\"}");
-			request.getSession().setAttribute(request.getSession().getId(), code);
-			System.out.println();
-			return "1";
+			String result = alidayuMessageService.SendMsg("123", "SMS_12870237", phone, "{\"code\":\"" + code + "\"}");
+			JSONObject jsonObject = new JSONObject(result);
+			JSONObject success = (JSONObject) jsonObject.opt("alibaba_aliqin_fc_sms_num_send_response");
+			if (success!=null) {
+				request.getSession().setAttribute(request.getSession().getId(), code);
+				return "true";
+			}
+			JSONObject fail = (JSONObject) jsonObject.opt("error_response");
+			if (fail!=null) {
+				JSONObject subJson = (JSONObject) jsonObject.get("error_response");
+				String reason = subJson.get("code").toString()+"\t"+subJson.get("sub_code").toString();
+				logger.error("发送短信失败，code:"+reason);
+				return subJson.get("sub_code").toString();
+			} 
+			else {
+				logger.error("发送短信异常:"+result);
+			}
+			return "error";
 		} catch (Exception e) {
 			logger.error("ERROR:" + e.getMessage());
-			return "0";
+			return "error";
 		}
 	}
 

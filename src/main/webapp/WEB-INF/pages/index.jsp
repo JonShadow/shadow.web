@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>B-JUI 前端管理框架</title>
+<title>主页</title>
 <meta name="Keywords"
 	content="B-JUI,Bootstrap,jquery,ui,前端,框架,开源,OSC,开源框架,knaan" />
 <meta name="Description"
@@ -33,9 +33,7 @@
 <link href="B-JUI/themes/css/FA/css/font-awesome.min.css"
 	rel="stylesheet">
 <!-- Favicons -->
-<link rel="apple-touch-icon-precomposed"
-	href="B-JUI/assets/ico/apple-touch-icon-precomposed.png">
-<link rel="shortcut icon" href="B-JUI/assets/ico/favicon.png">
+<link rel="shortcut icon" href="B-JUI/assets/ico/favion.png">
 <!--[if lte IE 7]>
 <link href="B-JUI/themes/css/ie7.css" rel="stylesheet">
 <![endif]-->
@@ -307,14 +305,7 @@ function logout() {
 						<div class="bjui-pageContent">
 							<div class="highlight">
 								<pre class="prettyprint">
-国庆快乐！
-----------------
-DEMO陆续更新……
-----------------
-文档，，，会有的
-----------------
-
-　　　　　　2016-09-30 B-JUI jfoajfhuiasjfauihui
+								从未有过好运，也从来不需要好运。
                                 </pre>
 							</div>
 						</div>

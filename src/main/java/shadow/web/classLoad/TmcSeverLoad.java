@@ -9,7 +9,7 @@ public class TmcSeverLoad extends HttpServlet {
 	private static final long serialVersionUID = -3500826006073235251L;
 	
 	  public void init() {
-		  Thread thread = new Thread(TmcClientDeal.getTmcClientDeal());  
+		  Thread thread = new Thread(TmcClientDeal.getInstance());  
 		  thread.start();
 	  }
 

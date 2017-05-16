@@ -6,6 +6,9 @@ import java.util.Properties;
 
 import javax.servlet.http.HttpServlet;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
@@ -72,51 +75,14 @@ public class AlidayuApi extends HttpServlet {
 		return alidayuApi;
 	}
 	public static void main(String[] args) throws ApiException {
-		getAlidayuApi().init();
-		/*TaobaoClient client = new DefaultTaobaoClient(serverUrl, appKey, appSecret);
-		AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
-		req.setExtend("123456");
-		req.setSmsType("normal");
-		req.setSmsFreeSignName("阿里大于");
-		req.setSmsParamString("{\"code\":\"1234\",\"product\":\"alidayu\"}");
-		req.setRecNum("13000000000");
-		req.setSmsTemplateCode("SMS_585014");
-		AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
-		System.out.println(rsp.getBody());*/
+		//getAlidayuApi().init();
+		String f = "{\"alibaba_aliqin_fc_sms_num_send_response11\":{\"result\":{\"err_code\":\"0\",\"model\":\"104712968736^1106543081806\",\"success\":true},\"request_id\":\"iv1b3lsky875\"}}";
+		String a= "{\"error_response\":{\"code\":15,\"msg\":\"Remote service error\",\"sub_code\":\"isv.SMS_SIGNATURE_ILLEGAL\",\"sub_msg\":\"短信签名不合法\",\"request_id\":\"eqi0knmeqe89\"}}";
+		JSONObject jsonObject = new JSONObject(f);
+		JSONObject subJson = (JSONObject) jsonObject.opt("alibaba_aliqin_fc_sms_num_send_response");
+		//JSONObject j = (JSONObject) jsonObject.get("error_response");
+		//String reason = j.get("code").toString()+"\t"+j.get("sub_code").toString();
+		//JSONArray sujson = subJson.getJSONArray("error_response");
+		System.out.println(subJson+"\t");
 	}
-	
-	/* public void init() throws ServletException {  
-	        super.init();  
-	        try {   
-	        Properties pro = new Properties();
-	        InputStream in = getClass().getResourceAsStream("/config.properties");
-	        System.out.println(in);
-	        pro.load(in);
-	        serverUrl = pro.getProperty("serverUrl").trim();   
-            appKey = pro.getProperty("appKey").trim();  
-            appSecret = pro.getProperty("appSecret").trim(); 
-            System.out.println(serverUrl+appKey+appSecret);
-	        in.close();
-	        } catch (IOException e) {   
-	            e.printStackTrace();   
-	        }
-	        
-	    } 
-	 */
-	/* public void init(ServletConfig cfg) throws ServletException {  
-	        super.init(cfg);  
-	          
-	        Properties prop = new Properties();   
-	        InputStream in = Object.class.getResourceAsStream("/config.properties");  
-	        System.out.println(in);
-	        try {   
-	            prop.load(in);   
-	            serverUrl = prop.getProperty("serverUrl").trim();   
-	            appKey = prop.getProperty("appKey").trim();  
-	            appSecret = prop.getProperty("appSecret").trim(); 
-	            System.out.println(serverUrl+appKey+appSecret);
-	        } catch (IOException e) {   
-	            e.printStackTrace();   
-	        } 
-	    } */ 
 }

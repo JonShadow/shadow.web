@@ -6,13 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>B-JUI 系统登录</title>
+<title>登录</title>
 <meta name="renderer" content="webkit">
 <script src="B-JUI/js/jquery-1.11.3.min.js"></script>
 <script src="B-JUI/js/jquery.cookie.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/lib/bootstrap/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/lib/sha256.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/Message.js"></script>
+<link rel="shortcut icon" href="B-JUI/assets/ico/favion.png">
 <link href="B-JUI/themes/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/login.css" rel="stylesheet" type="text/css">
 <link href="resources/css/st.css" rel="stylesheet">

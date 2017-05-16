@@ -37,21 +37,43 @@ public class TmcClientDeal implements Runnable,MessageHandler {
     
     private DealTmcService dealTmcService;
     
-    private void before () {   
-        Properties prop = new Properties();   
-        InputStream in = getClass().getResourceAsStream("/config.properties");  
-        try {   
-            prop.load(in);   
-            appkey = prop.getProperty("appKey").trim();  
-            appSecret = prop.getProperty("appSecret").trim(); 
-            tmcUrl = prop.getProperty("tmcUrl").trim(); 
-            tmcGroupName = prop.getProperty("tmcGroupName").trim(); 
-        } catch (IOException e) {   
-            e.printStackTrace();   
-        }   
-        dealTmcService = (DealTmcService) StaticContextAccessor.getBean("dealTmcService");
-    }  
-
+	private static TmcClientDeal singleTmc = null;  
+	TmcClient client = null;
+    //静态工厂方法   
+    public static TmcClientDeal getInstance() {  
+         if (singleTmc == null) {    
+        	 singleTmc = new TmcClientDeal();  
+         }
+        return singleTmc;  
+    }
+	private TmcClientDeal(){
+		if (client==null) {
+			logger.info("tmc正在链接........"+appkey);
+			Properties prop = new Properties();   
+	        InputStream in = getClass().getResourceAsStream("/config.properties");  
+	        try {   
+	            prop.load(in);   
+	            appkey = prop.getProperty("appKey").trim();  
+	            appSecret = prop.getProperty("appSecret").trim(); 
+	            tmcUrl = prop.getProperty("tmcUrl").trim(); 
+	            tmcGroupName = prop.getProperty("tmcGroupName").trim(); 
+	        } catch (IOException e) {   
+	            e.printStackTrace();   
+	        }   
+			client = new TmcClient(appkey, appSecret, tmcGroupName);
+			client.setMessageHandler(this);
+			client.setQueueSize(100000);
+			try {
+				client.connect(tmcUrl);
+				logger.info("tmc已连接.....");
+			} catch (LinkException e) {
+				e.printStackTrace();
+				singleTmc = null;
+				client = null;
+			}
+		}
+	}
+	
     public void onMessage(Message message, MessageStatus status) throws Exception {
         try {
             // 默认不抛出异常则认为消息处理成功  
@@ -66,22 +88,8 @@ public class TmcClientDeal implements Runnable,MessageHandler {
         }
     }
     
-    public static TmcClientDeal getTmcClientDeal(){
-    	TmcClientDeal tmcClientDeal = new TmcClientDeal();
-    	return tmcClientDeal;
-    }
 	public void run() {
-    	this.before();
-    	logger.info("正在执行中........"+appkey);
-        TmcClient tmcClient = new TmcClient(appkey, appSecret, tmcGroupName);
-        tmcClient.setMessageHandler(new TmcClientDeal());  
-        tmcClient.setQueueSize(100000);
-        try {
-			tmcClient.connect(tmcUrl);
-	        logger.info("tmc已连接.....");
-		} catch (LinkException e1) {
-			e1.printStackTrace();
-		}
+    	dealTmcService = (DealTmcService) StaticContextAccessor.getBean("dealTmcService");
         int heartbeatMillis = 0;
         int idleMillis = 0;
         int sleepMillis = 500;

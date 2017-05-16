@@ -11,9 +11,9 @@
 		<param-value>classpath:app.xml</param-value>
 	</context-param>
 
-	<!-- <welcome-file-list>
-		<welcome-file>login.html</welcome-file>
-	</welcome-file-list> -->
+	<welcome-file-list>
+		<welcome-file>login</welcome-file>
+	</welcome-file-list>
 	<!-- Spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

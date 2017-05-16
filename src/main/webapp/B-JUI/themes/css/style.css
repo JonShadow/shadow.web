@@ -641,13 +641,13 @@ fieldset .bjui-row {
 
 #bjui-sidenav-arrow {
 	position: absolute;
-	top: 40%;
+	top: 30%;
 	right: 1px;
 	z-index: 10;
-	width: 40px;
-	height: 40px;
+	width: 42px;
+	height: 35px;
 	text-align: center;
-	font-size: 20px;
+	font-size: 30px;
 	line-height: 40px;
 	color: #fff;
 	background-color: #999;
